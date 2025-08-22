@@ -31,13 +31,7 @@ A scalable, microservices-based ecommerce backend built with **Spring Boot**, **
 
 ## 📁 Project Structure
 
-## 📁 Project Structure
-
-Ecommerce-System/ 
-├── Analytics-service/ 
-├── api-gateway/ 
-├── Notification-service/ 
-├── users-service/
+Ecommerce-System/ ├── Analytics-service/ ├── api-gateway/ ├── Notification-service/ ├── users-service/
 
 ## 🛠️ Setup Instructions
 
