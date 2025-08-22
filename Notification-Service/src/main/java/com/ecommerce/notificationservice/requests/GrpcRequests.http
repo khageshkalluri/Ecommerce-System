@@ -1,0 +1,7 @@
+GRPC localhost:8001/NotificationService/CreateNotification
+
+{
+  "id": "1",
+  "name": "Doeyy",
+  "email": "doqe@example.com"
+}

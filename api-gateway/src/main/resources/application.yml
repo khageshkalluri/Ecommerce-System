@@ -1,0 +1,22 @@
+server:
+  port: 6004
+
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: users-service-id
+              uri: http://users-docker:4000
+              predicates:
+                - Path=/api/users-service/**
+              filters:
+                - StripPrefix=2
+            - id: swagger-docs
+              uri: http://users-docker:4000
+              predicates:
+                - Path=/api/swagger
+              filters:
+                - RewritePath=/api/swagger, /v3/api-docs
+

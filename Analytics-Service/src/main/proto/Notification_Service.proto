@@ -1,0 +1,19 @@
+syntax="proto3";
+
+option java_multiple_files = true;
+option java_package="Notification";
+
+service NotificationService{
+  rpc CreateNotification(NotificationRequest) returns (NotificationResponse);
+}
+
+message NotificationRequest{
+  string id=1;
+  string name=2;
+  string email=3;
+}
+
+message NotificationResponse{
+  string name=1;
+  string email=2;
+}
