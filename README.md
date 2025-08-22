@@ -63,6 +63,8 @@ docker-compose up --build
 
 Future Enhancements
 
+Add Products and Orders Services and Enchancing existing Services
+
 Add authentication with JWT
 
 Integrate Redis for caching
