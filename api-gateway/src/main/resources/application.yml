@@ -7,16 +7,30 @@ spring:
       server:
         webflux:
           routes:
+            - id: auth-service-id
+              uri: http://auth-service:2000
+              predicates:
+                - Path=/api/auth/**
+              filters:
+                - StripPrefix=2
             - id: users-service-id
               uri: http://users-docker:4000
               predicates:
                 - Path=/api/users-service/**
               filters:
                 - StripPrefix=2
+                - JwtAuth
             - id: swagger-docs
               uri: http://users-docker:4000
               predicates:
-                - Path=/api/swagger
+                - Path=/users/api/swagger
               filters:
-                - RewritePath=/api/swagger, /v3/api-docs
-
+                - RewritePath=/users/api/swagger, /v3/api-docs
+                - JwtAuth
+            - id: auth-swagger-docs
+              uri: http://auth-service:2000
+              predicates:
+                - Path=/auth/api/swagger
+              filters:
+                - RewritePath=/auth/api/swagger,/v3/api-docs
+                - JwtAuth
