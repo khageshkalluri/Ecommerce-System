@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="api-gateway" />
+        <module name="Infrastructure" />
         <module name="Integration-tests" />
       </profile>
       <profile name="Annotation profile for users-service" enabled="true">

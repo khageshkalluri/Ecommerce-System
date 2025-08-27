@@ -1,0 +1,36 @@
+server:
+  port: 6004
+
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: auth-service-id
+              uri: http://host.docker.internal:2000
+              predicates:
+                - Path=/api/auth/**
+              filters:
+                - StripPrefix=2
+            - id: users-service-id
+              uri: http://host.docker.internal:4000
+              predicates:
+                - Path=/api/users-service/**
+              filters:
+                - StripPrefix=2
+                - JwtAuth
+            - id: swagger-docs
+              uri: http://host.docker.internal:4000
+              predicates:
+                - Path=/users/api/swagger
+              filters:
+                - RewritePath=/users/api/swagger, /v3/api-docs
+                - JwtAuth
+            - id: auth-swagger-docs
+              uri: http://host.docker.internal:2000
+              predicates:
+                - Path=/auth/api/swagger
+              filters:
+                - RewritePath=/auth/api/swagger,/v3/api-docs
+                - JwtAuth

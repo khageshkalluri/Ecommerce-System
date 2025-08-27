@@ -1,6 +1,5 @@
 package com.ecommerce.usersservice.Service;
 
-import Notification.NotificationResponse;
 import com.ecommerce.usersservice.Dto.UserPatchRequest;
 import com.ecommerce.usersservice.Dto.UserRequest;
 import com.ecommerce.usersservice.Dto.UsersDto;
@@ -41,9 +40,8 @@ public class UserServiceImpl implements UserService {
         }
         Users users=UserMapper.mapToEntity(userRequest);
         this.userRepository.save(users);
-        NotificationResponse res= this.notificationServiceGrpcClient.createNotification(userRequest);
+        this.notificationServiceGrpcClient.createNotification(userRequest);
         this.kafkaProducer.sendKafkaMessage(users);
-        logger.info("Received notification response from NotificationServiceGrpcClient "+res.toString());
         return UserMapper.mapToDto(users);
     }
 

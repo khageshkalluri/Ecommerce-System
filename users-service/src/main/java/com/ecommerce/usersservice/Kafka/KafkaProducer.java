@@ -21,9 +21,10 @@ public class KafkaProducer {
 
 
     public void sendKafkaMessage(Users users) {
+        logger.info("Sending users to Kafka Topic");
         UserEvent userEvent=UserEvent.newBuilder().setName(users.getName()).setEmail(users.getEmail()).build();
-        this.kafkaTemplate.send(this.topicName,userEvent.toByteArray());
         logger.info("Sent kafka user event: "+userEvent.toString());
+        this.kafkaTemplate.send(this.topicName,userEvent.toByteArray());
     }
 
 }
